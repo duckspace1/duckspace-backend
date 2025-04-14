@@ -1,10 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
-app.use(cors()); // <--- esto habilita CORS
-app.use(express.json());
+app.use(cors());
+app.use(express.json()); // ← Esta línea es la clave
 
 const hashesValidos = ["ab3d", "cafe", "9f7c", "1a2b"];
 
@@ -18,6 +18,6 @@ app.post("/verificar", (req, res) => {
   }
 });
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
 });
